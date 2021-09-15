@@ -12,10 +12,12 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^12.2.0",
+    "@angular/cdk": "^12.2.5",
     "@angular/common": "^12.2.0",
     "@angular/compiler": "^12.2.0",
     "@angular/core": "^12.2.0",
     "@angular/forms": "^12.2.0",
+    "@angular/material": "^12.2.5",
     "@angular/platform-browser": "^12.2.0",
     "@angular/platform-browser-dynamic": "^12.2.0",
     "@angular/router": "^12.2.0",
@@ -33,7 +35,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.0",
+    "@angular-devkit/build-angular": "~12.1.1",
     "@angular-eslint/eslint-plugin": "~12.3.0",
     "@angular-eslint/eslint-plugin-template": "~12.3.0",
     "@angular-eslint/template-parser": "~12.3.0",
