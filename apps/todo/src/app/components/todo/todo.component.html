@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+  <span class="heading">My Todos</span>
+</mat-toolbar>
+
+<mat-card class="card">
+  <form [formGroup]="formGroup">
+    <mat-form-field
+      class="example-full-width"
+      appearance="outline"
+      class="card__input"
+    >
+      <input matInput formControlName="task" />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="addTask()"
+        *ngIf="isEdit === false"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        matSuffix
+        *ngIf="isEdit === true"
+        (click)="updateTask()"
+      >
+        <mat-icon>update</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-card class="card__todos" *ngFor="let task of tasks; let i = index"
+      >{{ task }}
+      <div>
+        <button mat-icon-button (click)="editTask(i)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteTask(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </form>
+</mat-card>

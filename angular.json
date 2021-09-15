@@ -83,7 +83,7 @@
             "tsConfig": "apps/todo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["apps/todo/src/favicon.ico", "apps/todo/src/assets"],
-            "styles": ["apps/todo/src/styles.scss"],
+            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/todo/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -188,6 +188,7 @@
     }
   },
   "cli": {
+    "analytics": "6ea549ec-6b51-4acc-97a4-0b60ae9b2006",
     "defaultCollection": "@nrwl/angular",
     "packageManager": "npm"
   },
