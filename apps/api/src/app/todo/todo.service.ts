@@ -11,11 +11,14 @@ export class TodoService {
     private readonly todoEntity: Repository<TodoEntity>
   ) {}
   createTask(task: TodoModel) {
-    // console.log(task)
     return this.todoEntity.save(task);
   }
 
-  getTask() {
+  getTask(id: TodoModel) {
+    return this.todoEntity.find(id);
+  }
+
+  getAllTask() {
     return this.todoEntity.find();
   }
 

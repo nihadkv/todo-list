@@ -14,7 +14,7 @@ export class TodoComponent implements OnInit {
   // tasks: TodoModel[] = [];
   tasks$: Observable<TodoModel> | any;
   isEdit = false;
-  index!: number;
+  editId!: any;
   refreshUsers$ = new BehaviorSubject<boolean>(true);
   constructor(private fb: FormBuilder, private todoService: TodoService) {}
 
@@ -22,45 +22,47 @@ export class TodoComponent implements OnInit {
     this.formGroup = this.fb.group({
       task: [''],
     });
-    this.getData();
+    this.getAllData();
   }
 
-  getData() {
-    // this.todoService.findTask().subscribe((res) => {
-    //   console.log(res);
-    //   this.tasks$ = res;
-    // });
-    this.tasks$ = this.todoService.findTask();
+  getAllData() {
+    this.tasks$ = this.todoService.findAllTask();
   }
 
   addTask() {
     if (this.formGroup.value.task) {
-      // this.tasks.push(this.formGroup.get('task')?.value);
       this.todoService
         .createTask(this.formGroup.get('task')?.value)
         .subscribe();
       this.formGroup.reset();
     }
-    this.getData();
+    setTimeout(() => {
+      this.getAllData();
+    }, 100);
   }
 
   deleteTask(id: TodoModel) {
-    // console.log(id);
-    // this.tasks.splice(i, 1);
     this.todoService.deleteTask(id).subscribe();
-    this.getData();
+    setTimeout(() => {
+      this.getAllData();
+    }, 100);
   }
 
-  editTask(i: number) {
-    this.index = i;
-    // const indexValue = this.tasks[i];
-    // this.formGroup.patchValue({ task: indexValue });
+  editTask(id: TodoModel) {
+    this.todoService.findTask(id).subscribe((res: any) => {
+      this.formGroup.patchValue({ task: res[0].title });
+    });
     this.isEdit = true;
+    this.editId = id;
   }
 
   updateTask() {
-    // this.tasks[this.index] = this.formGroup.value.task;
+    const updatedTask = this.formGroup.value.task;
+    this.todoService.editTask(this.editId, updatedTask).subscribe();
     this.formGroup.reset();
     this.isEdit = false;
+    setTimeout(() => {
+      this.getAllData();
+    }, 100);
   }
 }

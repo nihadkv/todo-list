@@ -11,12 +11,21 @@ export class TodoService {
     return this.http.post('http://localhost:3333/api/todo', { title: task });
   }
 
-  findTask() {
+  findAllTask() {
     return this.http.get('http://localhost:3333/api/todo');
   }
 
+  findTask(id: TodoModel) {
+    return this.http.get(`http://localhost:3333/api/todo/${id}`);
+  }
+
   deleteTask(id: TodoModel) {
-    console.log(id);
     return this.http.delete(`http://localhost:3333/api/todo/${id}`);
+  }
+
+  editTask(id: TodoModel, updatedTask: TodoModel) {
+    return this.http.put(`http://localhost:3333/api/todo/${id}`, {
+      title: updatedTask,
+    });
   }
 }
