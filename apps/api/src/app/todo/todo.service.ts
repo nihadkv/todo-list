@@ -14,7 +14,11 @@ export class TodoService {
     return this.todoEntity.save(task);
   }
 
-  getTask() {
+  getTask(id: TodoModel) {
+    return this.todoEntity.find(id);
+  }
+
+  getAllTask() {
     return this.todoEntity.find();
   }
 

@@ -28,13 +28,13 @@
       </button>
     </mat-form-field>
 
-    <mat-card class="card__todos" *ngFor="let task of tasks; let i = index"
-      >{{ task }}
+    <mat-card class="card__todos" *ngFor="let task of tasks$ | async"
+      >{{ task.title }}
       <div>
-        <button mat-icon-button (click)="editTask(i)">
+        <button mat-icon-button (click)="editTask(task.id)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="deleteTask(i)">
+        <button mat-icon-button (click)="deleteTask(task.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>

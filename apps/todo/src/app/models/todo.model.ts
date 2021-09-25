@@ -1,3 +1,5 @@
 export interface TodoModel {
-  task: string;
+  id?: number;
+  task?: string;
+  date?: Date;
 }

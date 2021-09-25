@@ -20,7 +20,13 @@ export class TodoController {
 
   @Get()
   findAll() {
-    return this.todoService.getTask();
+    return this.todoService.getAllTask();
+  }
+
+  @Get(':id')
+  findTask(@Param() id: TodoModel) {
+    console.log(id);
+    return this.todoService.getTask(id);
   }
 
   @Put(':id')
