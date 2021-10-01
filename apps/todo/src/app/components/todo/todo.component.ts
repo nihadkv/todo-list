@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TodoModel } from '../../models/todo.model';
 import { TodoService } from '../../services/todo.service';
-
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'todo-app-todo',
   templateUrl: './todo.component.html',
@@ -16,13 +16,28 @@ export class TodoComponent implements OnInit {
   isEdit = false;
   editId!: any;
   refreshUsers$ = new BehaviorSubject<boolean>(true);
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]> | any;
+
   constructor(private fb: FormBuilder, private todoService: TodoService) {}
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
       task: [''],
+      search: [''],
     });
     this.getAllData();
+    this.filteredOptions = this.formGroup
+      .get('search')
+      ?.valueChanges.pipe(map((value) => this._filter(value)));
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
   }
 
   getAllData() {

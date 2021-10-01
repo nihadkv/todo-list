@@ -1,5 +1,25 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="toolbar">
   <span class="heading">My Todos</span>
+  <form class="example-form" [formGroup]="formGroup">
+    <mat-form-field class="example-full-width" floatLabel="never">
+      <input
+        type="text"
+        placeholder="Pick one"
+        aria-label="Number"
+        matInput
+        formControlName="search"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="option"
+        >
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
 </mat-toolbar>
 
 <mat-card class="card">

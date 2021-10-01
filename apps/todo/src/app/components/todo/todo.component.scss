@@ -4,6 +4,11 @@
   font-weight: 600;
 }
 
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
 .card {
   width: 50%;
   margin: 50px auto;
